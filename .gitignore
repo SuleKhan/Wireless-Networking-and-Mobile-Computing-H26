@@ -1,0 +1,18 @@
+# Jupyter autosave backups — never belong in a published repo
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Local dev environment
+.venv/
+mise.toml
+requirements*.txt
+
+__pycache__/
+*.pyc
+.DS_Store
+
+# Jemula simulation output
+Results/
+results_*/
+*.log
+*.kml
