@@ -1,0 +1,30 @@
+Use of AI for Assignment 02.ipynb
+
+This file records how I used AI during the completion of Assignment 02. In all cases where AI was used, I reviewed the output carefully, evaluated whether it was correct, and took time to understand and adapt it before using it in my final work.
+
+Part 1: Initial AI assistance
+
+1.1 - Used Claude to generate class diagram.
+1.2 - Used Claude to answer a question or provide an initial explanation, which I then reviewed and refined.
+
+Part 2: Verification and polishing
+
+2.1 - Used AI to verify an answer and improve its clarity and polish.
+2.2 - Used AI to check my response for correctness and refine the wording.
+2.3 - Used AI to help answer a question, then took time to understand the response and decide how to apply it correctly.
+2.4 - Used AI to help answer a question, then took time to understand the explanation before integrating it into my work.
+2.5 - No AI used for this step; I completed it independently.
+
+Part 3: Follow-up understanding and revision
+
+3.1 - Used AI to help answer a question, then took time to understand the response and adapt it to the assignment context.
+3.2 - No AI used for this step; I worked through it independently.
+3.3 - Used AI to help generate an answer, then reviewed and understood it before using it.
+3.4 - Used AI to polish a response, but then took time to understand and revise it so it matched my own reasoning and the assignment requirements.
+3.5 - Used AI to answer a question, then took time to study the answer and ensure I understood it before using it in my final work.
+3.6 - Used AI to help produce an answer, then took additional time to understand, validate, and revise it to ensure accuracy and clarity.
+
+Overall summary:
+
+My use of AI was mainly for generating, checking, and polishing answers. I did not rely on AI blindly; in each case, I reviewed the output, worked to understand it, and adapted it before using it in the assignment. This helped improve clarity and confidence while keeping the final work grounded in my own understanding.
+

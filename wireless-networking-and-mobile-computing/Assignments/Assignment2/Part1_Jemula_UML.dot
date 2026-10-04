@@ -1,0 +1,127 @@
+digraph JemulaPart1 {
+    graph [
+        rankdir=LR,
+        bgcolor="#f5f7f6",
+        pad="0.35",
+        nodesep="0.4",
+        ranksep="0.85",
+        splines=polyline,
+        fontname="Arial",
+        fontsize=20,
+        fontcolor="#1d3036",
+        labelloc=t,
+        label="Jemula++ Kernel and Jemula802++ Engine"
+    ];
+    node [shape=plain, fontname="Arial"];
+    edge [fontname="Arial", fontsize=10, color="#536a70", fontcolor="#344d53"];
+
+    subgraph cluster_kernel {
+        label="Jemula++ | Discrete-Event Kernel";
+        style="rounded,filled";
+        color="#7fa7a1";
+        fillcolor="#e8f1ef";
+        fontname="Arial";
+        fontsize=13;
+
+        JEEventScheduler [label=<
+            <TABLE BORDER="1" COLOR="#53847c" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="white">
+                <TR><TD ALIGN="LEFT" BGCOLOR="#d7e9e5"><FONT POINT-SIZE="9">kernel</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="14"><B>JEEventScheduler</B></FONT></TD></TR>
+                <HR COLOR="#dbe3e1"/>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Consolas" POINT-SIZE="10">eventList: JEEventList</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Consolas" POINT-SIZE="10">handlersById: List&lt;JEEventHandler&gt;</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Arial" POINT-SIZE="10">orders and dispatches timed events</FONT></TD></TR>
+            </TABLE>
+        >];
+
+        JEEventHandler [label=<
+            <TABLE BORDER="1" COLOR="#53847c" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="white">
+                <TR><TD ALIGN="LEFT" BGCOLOR="#d7e9e5"><FONT POINT-SIZE="9">kernel | abstract</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="14"><B>JEEventHandler</B></FONT></TD></TR>
+                <HR COLOR="#dbe3e1"/>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Consolas" POINT-SIZE="10">handlerId: int</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Arial" POINT-SIZE="10">receives and sends simulation events</FONT></TD></TR>
+            </TABLE>
+        >];
+    }
+
+    subgraph cluster_engine {
+        label="Jemula802++ | 802.11 Simulation Engine";
+        style="rounded,filled";
+        color="#8ba8b5";
+        fillcolor="#edf3f6";
+        fontname="Arial";
+        fontsize=13;
+
+        JE802Control [label=<
+            <TABLE BORDER="1" COLOR="#557d91" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="white">
+                <TR><TD ALIGN="LEFT" BGCOLOR="#dce9ef"><FONT POINT-SIZE="9">emulator</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="14"><B>JE802Control</B></FONT></TD></TR>
+                <HR COLOR="#dbe3e1"/>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Consolas" POINT-SIZE="10">eventScheduler: JEEventScheduler</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Consolas" POINT-SIZE="10">stations: List&lt;JE802Station&gt;</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Arial" POINT-SIZE="10">builds the model from scenario XML</FONT></TD></TR>
+            </TABLE>
+        >];
+
+        JE802Station [label=<
+            <TABLE BORDER="1" COLOR="#557d91" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="white">
+                <TR><TD ALIGN="LEFT" BGCOLOR="#dce9ef"><FONT POINT-SIZE="9">station</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="14"><B>JE802Station</B></FONT></TD></TR>
+                <HR COLOR="#dbe3e1"/>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Consolas" POINT-SIZE="10">theMac: JE802_11Mac</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Consolas" POINT-SIZE="10">statEval: JE802StatEval</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Arial" POINT-SIZE="10">assembles a station's protocol stack</FONT></TD></TR>
+            </TABLE>
+        >];
+
+        JE802StatEval [label=<
+            <TABLE BORDER="1" COLOR="#557d91" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="white">
+                <TR><TD ALIGN="LEFT" BGCOLOR="#f1e6df"><FONT POINT-SIZE="9">emulator | evaluation</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="14"><B>JE802StatEval</B></FONT></TD></TR>
+                <HR COLOR="#dbe3e1"/>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Arial" POINT-SIZE="10">collects throughput, offer, and delay</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Arial" POINT-SIZE="10">writes per-run statistics to CSV</FONT></TD></TR>
+            </TABLE>
+        >];
+
+        JE802_Mac [label=<
+            <TABLE BORDER="1" COLOR="#557d91" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="white">
+                <TR><TD ALIGN="LEFT" BGCOLOR="#dce9ef"><FONT POINT-SIZE="9">layer2_802Mac | abstract</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="14"><B>JE802_Mac</B></FONT></TD></TR>
+                <HR COLOR="#dbe3e1"/>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Arial" POINT-SIZE="10">MAC-layer event handler base</FONT></TD></TR>
+            </TABLE>
+        >];
+
+        JE802_11Mac [label=<
+            <TABLE BORDER="1" COLOR="#557d91" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="white">
+                <TR><TD ALIGN="LEFT" BGCOLOR="#dce9ef"><FONT POINT-SIZE="9">layer2_80211Mac</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="14"><B>JE802_11Mac</B></FONT></TD></TR>
+                <HR COLOR="#dbe3e1"/>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Arial" POINT-SIZE="10">implements 802.11 MAC behavior</FONT></TD></TR>
+            </TABLE>
+        >];
+
+        JE802_11MacAlgorithm [label=<
+            <TABLE BORDER="1" COLOR="#557d91" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="white">
+                <TR><TD ALIGN="LEFT" BGCOLOR="#f4eadb"><FONT POINT-SIZE="9">layer2_80211Mac | algorithm</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="14"><B>JE802_11MacAlgorithm</B></FONT></TD></TR>
+                <HR COLOR="#dbe3e1"/>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Consolas" POINT-SIZE="10">mac: JE802_11Mac</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><FONT FACE="Arial" POINT-SIZE="10">compute() applies policy decisions</FONT></TD></TR>
+            </TABLE>
+        >];
+    }
+
+    JEEventScheduler -> JEEventHandler [dir=both, arrowtail=none, arrowhead=none, xlabel="registers / dispatches handlers"];
+    JE802Control -> JEEventScheduler [dir=both, arrowtail=none, arrowhead=none, xlabel="creates and runs"];
+    JE802Control -> JE802Station [dir=forward, arrowhead=none, xlabel="creates 1..*"];
+    JE802Control -> JE802StatEval [dir=forward, arrowhead=none, xlabel="creates"];
+    JE802Station -> JE802_11Mac [dir=forward, arrowhead=none, xlabel="owns"];
+    JE802Station -> JE802StatEval [dir=forward, arrowhead=none, xlabel="reports measurements"];
+    JE802_11MacAlgorithm -> JE802_11Mac [dir=forward, arrowhead=none, xlabel="uses"];
+    JE802StatEval -> JEEventHandler [arrowhead=empty, penwidth=1.5];
+    JE802_Mac -> JEEventHandler [arrowhead=empty, penwidth=1.5];
+    JE802_11Mac -> JE802_Mac [arrowhead=empty, penwidth=1.5];
+}

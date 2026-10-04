@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="720px" version="1.1" viewBox="0 0 1474 720" width="1474px">
+  <defs/>
+  <rect fill="#f3f5f2" height="720" width="1474" x="0" y="0"/>
+  <text fill="#1c2b32" font-family="Segoe UI, Arial, sans-serif" font-size="29" font-weight="bold" x="45" y="52">Jemula++ Kernel Class Diagram</text>
+  <text fill="#506168" font-family="Segoe UI, Arial, sans-serif" font-size="12" x="47" y="80">Generated from C:\Users\sulek\ETH\Msc-CS\Semester 3\Wireless Networks and Mobile Computing\Exs\wireless-networking-and-mobile-computing\notebooks\01 Jemula\jemula-project\simulator\kernel\src\kernel</text>
+  <line stroke="#91a5a4" stroke-width="1.5" x1="351.2241379310345" x2="406.7758620689655" y1="420.0" y2="375.0"/>
+  <line stroke="#91a5a4" stroke-width="1.5" x1="403.0" x2="355.0" y1="542.5" y2="542.5"/>
+  <line stroke="#91a5a4" stroke-width="1.5" x1="200.0" x2="200.0" y1="375.0" y2="420.0"/>
+  <line stroke="#91a5a4" stroke-width="1.5" x1="761.0" x2="713.0" y1="542.5" y2="542.5"/>
+  <line stroke="#91a5a4" stroke-width="1.5" x1="761.0" x2="355.0" y1="479.72067039106145" y2="315.27932960893855"/>
+  <line stroke="#91a5a4" stroke-width="1.5" x1="764.7758620689656" x2="709.2241379310344" y1="420.0" y2="375.0"/>
+  <line stroke="#91a5a4" stroke-width="1.5" x1="1119.0" x2="355.0" y1="542.5" y2="542.5"/>
+  <line stroke="#91a5a4" stroke-width="1.5" x1="1119.0" x2="713.0" y1="479.72067039106145" y2="315.27932960893855"/>
+  <line stroke="#91a5a4" stroke-width="1.5" x1="916.0" x2="916.0" y1="375.0" y2="420.0"/>
+  <line stroke="#62787d" stroke-width="2" x1="355.0" x2="761.0" y1="479.72067039106145" y2="315.27932960893855"/>
+  <line stroke="#62787d" stroke-width="2" x1="709.2241379310344" x2="764.7758620689656" y1="420.0" y2="375.0"/>
+  <line stroke="#62787d" stroke-width="2" x1="916.0" x2="916.0" y1="420.0" y2="375.0"/>
+  <line stroke="#62787d" stroke-width="2" x1="1119.0" x2="713.0" y1="542.5" y2="542.5"/>
+  <rect fill="#ffffff" height="245" rx="8" stroke="#c6d2d0" stroke-width="1.5" width="310" x="45" y="130"/>
+  <rect fill="#26756f" height="7" rx="4" width="310" x="45" y="130"/>
+  <text fill="#26756f" font-family="Segoe UI, Arial, sans-serif" font-size="11" x="61" y="160">kernel :: class</text>
+  <text fill="#1c2b32" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="bold" x="61" y="185">JEEventList</text>
+  <line stroke="#dbe3e1" stroke-width="1" x1="45" x2="355" y1="198" y2="198"/>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="61" y="221">~ treeMap: TreeMap&lt;Long, LinkedList&lt;JE...</text>
+  <rect fill="#ffffff" height="245" rx="8" stroke="#c6d2d0" stroke-width="1.5" width="310" x="403" y="130"/>
+  <rect fill="#26756f" height="7" rx="4" width="310" x="403" y="130"/>
+  <text fill="#26756f" font-family="Segoe UI, Arial, sans-serif" font-size="11" x="419" y="160">kernel :: class</text>
+  <text fill="#1c2b32" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="bold" x="419" y="185">JETime</text>
+  <line stroke="#dbe3e1" stroke-width="1" x1="403" x2="713" y1="198" y2="198"/>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="419" y="221">~ time: long</text>
+  <rect fill="#ffffff" height="245" rx="8" stroke="#c6d2d0" stroke-width="1.5" width="310" x="761" y="130"/>
+  <rect fill="#26756f" height="7" rx="4" width="310" x="761" y="130"/>
+  <text fill="#26756f" font-family="Segoe UI, Arial, sans-serif" font-size="11" x="777" y="160">kernel :: class</text>
+  <text fill="#1c2b32" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="bold" x="777" y="185">JEmula</text>
+  <line stroke="#dbe3e1" stroke-width="1" x1="761" x2="1071" y1="198" y2="198"/>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="777" y="221">~ debuglevel: int</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="777" y="240">~ verbose: boolean</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="777" y="259">~ messageSelector: String</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="777" y="278">~ theUniqueEventScheduler: JEEventSche...</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="777" y="297">~ theUniqueRandomGenerator: Random</text>
+  <rect fill="#ffffff" height="245" rx="8" stroke="#c6d2d0" stroke-width="1.5" width="310" x="1119" y="130"/>
+  <rect fill="#26756f" height="7" rx="4" width="310" x="1119" y="130"/>
+  <text fill="#26756f" font-family="Segoe UI, Arial, sans-serif" font-size="11" x="1135" y="160">kernel :: class</text>
+  <text fill="#1c2b32" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="bold" x="1135" y="185">JEmulaFatalException</text>
+  <line stroke="#dbe3e1" stroke-width="1" x1="1119" x2="1429" y1="198" y2="198"/>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="1135" y="221">~ serialVersionUID: long</text>
+  <rect fill="#ffffff" height="245" rx="8" stroke="#c6d2d0" stroke-width="1.5" width="310" x="45" y="420"/>
+  <rect fill="#26756f" height="7" rx="4" width="310" x="45" y="420"/>
+  <text fill="#26756f" font-family="Segoe UI, Arial, sans-serif" font-size="11" x="61" y="450">kernel :: class</text>
+  <text fill="#1c2b32" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="bold" x="61" y="475">JEEvent</text>
+  <line stroke="#dbe3e1" stroke-width="1" x1="45" x2="355" y1="488" y2="488"/>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="61" y="511">~ name: String</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="61" y="530">~ theTargetHandlerId: Integer</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="61" y="549">~ theSourceHandlerId: Integer</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="61" y="568">~ theScheduledTime: JETime</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="61" y="587">~ theParameterList: List&lt;Object&gt;</text>
+  <rect fill="#ffffff" height="245" rx="8" stroke="#c6d2d0" stroke-width="1.5" width="310" x="403" y="420"/>
+  <rect fill="#26756f" height="7" rx="4" width="310" x="403" y="420"/>
+  <text fill="#26756f" font-family="Segoe UI, Arial, sans-serif" font-size="11" x="419" y="450">kernel :: class</text>
+  <text fill="#1c2b32" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="bold" x="419" y="475">JEEventHandler</text>
+  <line stroke="#dbe3e1" stroke-width="1" x1="403" x2="713" y1="488" y2="488"/>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="419" y="511">~ theUniqueHandlerId: int</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="419" y="530">~ HandlerId: Integer</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="419" y="549">~ theLastRxEvent: JEEvent</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="419" y="568">~ theLastTxEvent: JEEvent</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="419" y="587">~ theState: state</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="419" y="606">~ parameterlist: List&lt;Object&gt;</text>
+  <rect fill="#ffffff" height="245" rx="8" stroke="#c6d2d0" stroke-width="1.5" width="310" x="761" y="420"/>
+  <rect fill="#26756f" height="7" rx="4" width="310" x="761" y="420"/>
+  <text fill="#26756f" font-family="Segoe UI, Arial, sans-serif" font-size="11" x="777" y="450">kernel :: class</text>
+  <text fill="#1c2b32" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="bold" x="777" y="475">JEEventScheduler</text>
+  <line stroke="#dbe3e1" stroke-width="1" x1="761" x2="1071" y1="488" y2="488"/>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="777" y="511">~ now: JETime</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="777" y="530">~ eventList: JEEventList</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="777" y="549">~ handlersById: List&lt;JEEventHandler&gt;</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="777" y="568">~ theEmulationEnd: JETime</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="777" y="587">~ thePath2Results: String</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="777" y="606">~ theProgressHook: Runnable</text>
+  <text fill="#506168" font-family="Segoe UI, Arial, sans-serif" font-size="11" x="777" y="625">... +4 fields</text>
+  <rect fill="#ffffff" height="245" rx="8" stroke="#c6d2d0" stroke-width="1.5" width="310" x="1119" y="420"/>
+  <rect fill="#26756f" height="7" rx="4" width="310" x="1119" y="420"/>
+  <text fill="#26756f" font-family="Segoe UI, Arial, sans-serif" font-size="11" x="1135" y="450">kernel :: class</text>
+  <text fill="#1c2b32" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="bold" x="1135" y="475">JETimer</text>
+  <line stroke="#dbe3e1" stroke-width="1" x1="1119" x2="1429" y1="488" y2="488"/>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="1135" y="511">~ theStartTime: JETime</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="1135" y="530">~ theResumeTime: JETime</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="1135" y="549">~ theElapsedInterval: JETime</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="1135" y="568">~ theRemainingInterval: JETime</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="1135" y="587">~ theFireEventName: String</text>
+  <text fill="#506168" font-family="Consolas, monospace" font-size="11" x="1135" y="606">~ theExpiryIndicator: JEEvent</text>
+  <text fill="#506168" font-family="Segoe UI, Arial, sans-serif" font-size="11" x="1135" y="625">... +3 fields</text>
+  <polygon fill="#f3f5f2" points="761.0,315.27932960893855 751.5786388032462,326.6476167798497 746.3229742719437,313.671562281875" stroke="#62787d" stroke-width="1.5"/>
+  <polygon fill="#f3f5f2" points="764.7758620689656,375.0 759.0804433447054,388.62212191823824 750.2681719954307,377.74352487327167" stroke="#62787d" stroke-width="1.5"/>
+  <polygon fill="#f3f5f2" points="916.0,375.0 923.0,388.0 909.0,388.0" stroke="#62787d" stroke-width="1.5"/>
+  <polygon fill="#f3f5f2" points="713.0,542.5 726.0,535.5 726.0,549.5" stroke="#62787d" stroke-width="1.5"/>
+  <line stroke="#91a5a4" stroke-width="1.5" x1="45" x2="81" y1="692" y2="692"/>
+  <text fill="#506168" font-family="Segoe UI, Arial, sans-serif" font-size="11" x="89" y="696">field-type association</text>
+  <text fill="#506168" font-family="Segoe UI, Arial, sans-serif" font-size="11" x="265" y="696">hollow triangle = extends</text>
+</svg>

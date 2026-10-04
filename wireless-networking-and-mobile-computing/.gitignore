@@ -16,3 +16,6 @@ Results/
 results_*/
 *.log
 *.kml
+
+.vscode/
+/notebooks/01 Jemula/jemula-project/
