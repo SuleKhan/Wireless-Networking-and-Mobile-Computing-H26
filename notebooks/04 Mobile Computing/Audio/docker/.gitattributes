@@ -1,2 +1,0 @@
-# The patch must keep LF endings: git apply inside the Linux build rejects CRLF.
-* text eol=lf
