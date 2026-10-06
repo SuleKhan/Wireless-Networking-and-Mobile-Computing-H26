@@ -1,0 +1,8 @@
+# Audio lab (Assignment 08). The watermark engine itself runs in Docker - see docker/.
+numpy
+scipy
+soundfile
+pandas
+matplotlib
+sounddevice       # optional: play and record with this computer
+imageio-ffmpeg    # optional: decode phone recordings (.m4a, .aac)
