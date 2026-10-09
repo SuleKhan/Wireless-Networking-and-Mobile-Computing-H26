@@ -1,0 +1,6 @@
+GitHub Copilot was used to verify and polish the responses for this assignment. For the questions listed below, it was used as a support tool to help generate initial ideas and explanations, which were then reviewed, understood, and refined independently.
+
+- 2.6
+- 3.4
+- 3.6
+- 3.7
