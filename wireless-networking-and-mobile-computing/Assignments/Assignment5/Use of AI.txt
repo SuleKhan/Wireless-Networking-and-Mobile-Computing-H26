@@ -1,0 +1,26 @@
+Declaration of AI Use
+
+I used generative AI as a supporting tool while preparing this assignment. I used it to help explain course concepts, analyze simulation results, calculate confidence intervals, and improve the clarity of some responses. I reviewed the suggestions and adapted them to my work.
+
+Step 1: IEEE 802.11 MAC
+- 1.1–1.5: Used AI to help answer and explain the questions, then reviewed the responses to understand the concepts.
+
+Step 2: Single Sender
+- 2.1: Used AI to help analyze the baseline simulation results.
+- 2.2: Used AI to understand why the larger-packet scenario achieves higher throughput.
+- 2.3: Used AI to prepare and run the RTS/CTS threshold scenarios, then compare their results.
+- 2.4: Used AI to analyze the throughput measurements and calculate confidence intervals for the four runs.
+- 2.5: Used AI to understand how to restrict the confidence analysis to the selected steady-state time interval.
+- 2.6: No AI used; completed independently.
+- 2.7: Used AI for help with Markdown formatting.
+- 2.8: Used AI to help interpret and present the statistical results, then reviewed the explanation.
+
+Step 3: Two Senders
+- 3.1: Used AI to polish the description of the two-sender scenario.
+- 3.2: Used AI to analyze the simulation plot and interpret the packet timeline.
+- 3.3: Used AI to understand when RTS/CTS is useful.
+- 3.4: Used AI to understand the configuration parameters, analyze results, and improve the explanation of the selected settings.
+- 3.5: No AI used; completed independently.
+- 3.6: Used AI to check and improve the discussion of how the settings might change with more stations and when optimizing for lower delay.
+
+I reviewed the AI-assisted material and am responsible for the content, accuracy, and final wording of my submitted work.
