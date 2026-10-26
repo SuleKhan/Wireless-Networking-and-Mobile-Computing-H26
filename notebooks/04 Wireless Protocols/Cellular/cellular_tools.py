@@ -7,7 +7,7 @@ One cell:   link_budget()        downlink and uplink, 700 MHz vs 3.5 GHz, buildi
 Many cells: median_sinr()        SINR of indoor users in a hexagonal network of 3-sector sites
             compare_reuse()      reuse 1 (LTE/5G) against reuse 3 (the classic "colours")
 Planning:   knee_curves()        sites per km2 needed: coverage-limited (flat) vs capacity-limited (rising)
-Your phone: path_loss_from_rsrp(), uma_distance_m(), building_entry_loss(), spacing_from_ride()
+Your phone: path_loss_from_rsrp(), uma_distance_m(), building_entry_loss()
 
 Every number below is a stated teaching assumption, typical for a Swiss macro network;
 real networks differ site by site. numpy and matplotlib only.
@@ -130,16 +130,19 @@ def link_budget(f_mhz, beamforming=True, d_flat_m=None, adaptive=True):
     ul = (P_UE_DBM + G_BS_DBI - FEEDER_DB + bf_ul) - noise_dbm(B_UL_EDGE_HZ, NF_BS_DB) - SNR_MIN_DB - b["tdd_ul"]
     mapl = min(dl, ul)
     o2i = float(o2i_loss_db(b["f_ghz"]))
-    return dict(band=b["name"], beamforming=beamforming, eirp_dl_dbm=eirp_dl, nisv_cut_db=capped_by,
+    return dict(band=b["name"], beamforming=beamforming and b["bf_dl"] > 0, eirp_dl_dbm=eirp_dl, nisv_cut_db=capped_by,
                 mapl_dl_db=dl, mapl_ul_db=ul, limited_by="uplink" if ul < dl else "downlink",
                 o2i_db=o2i, r_outdoor_m=float(r_uma_m(mapl, b["f_ghz"])), r_indoor_m=float(r_uma_m(mapl - o2i, b["f_ghz"])))
 
 
-def print_link_budget(rows):
-    print(f"{'band':22s}{'beamf.':>7s}{'EIRP':>7s}{'NISV cut':>10s}{'MAPL DL':>9s}{'MAPL UL':>9s}{'limit':>10s}"
+def print_link_budget(rows, labels=None):
+    """The link budget as a table, one row per case. labels: names for the rows (default: the band)."""
+    labels = labels or [r["band"] for r in rows]
+    w = max(22, max(len(l) for l in labels) + 2)
+    print(f"{'case':{w}s}{'beamforming':>12s}{'EIRP':>7s}{'NISV cut':>10s}{'MAPL DL':>9s}{'MAPL UL':>9s}{'limit':>10s}"
           f"{'O2I':>6s}{'r outdoor':>11s}{'r indoor':>10s}")
-    for r in rows:
-        print(f"{r['band']:22s}{'yes' if r['beamforming'] else 'no':>7s}{r['eirp_dl_dbm']:7.0f}"
+    for label, r in zip(labels, rows):
+        print(f"{label:{w}s}{'yes' if r['beamforming'] else 'no':>12s}{r['eirp_dl_dbm']:7.0f}"
               f"{r['nisv_cut_db']:10.1f}{r['mapl_dl_db']:9.0f}{r['mapl_ul_db']:9.0f}{r['limited_by']:>10s}"
               f"{r['o2i_db']:6.1f}{r['r_outdoor_m']:9.0f} m{r['r_indoor_m']:8.0f} m")
     print("(EIRP in dBm; NISV cut: dB the downlink loses to the NISV cap; MAPL and O2I in dB)")
@@ -277,36 +280,28 @@ def _pl_rma_db(d, f_ghz, hbs=MAST_M, hut=1.5, w=20, h=5):
             + (43.42 - 3.1 * np.log10(hbs)) * (np.log10(d3) - 3) + 20 * np.log10(f_ghz) - (3.2 * np.log10(11.75 * hut) ** 2 - 4.97))
 
 
-def plot_knee(densities=None, my_sites_per_km2=None, real_sites_per_km2=None):
-    """The knee plot. densities: {label: subscribers per km2}, drawn as vertical lines.
-    my_sites_per_km2: your estimate from the tram ride; real_sites_per_km2: from the board's real sites."""
+def plot_knee(densities=None):
+    """The knee plot. densities: {label: subscribers per km2}, drawn as vertical lines."""
     k = knee_curves()
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.loglog(k["users"], k["sites_700"], color="tab:blue", lw=2, label="700 MHz, indoor phones")
     ax.loglog(k["users"], k["sites_3500"], color="tab:red", lw=2, label="3.5 GHz, indoor phones")
-    ax.loglog(k["users"], k["sites_700_rural"], color="tab:green", lw=1.5, ls="--",
-              label=f"700 MHz, rural, outdoor phones ({MAST_M:.0f} m masts)")
     for f, col in ((700, "tab:blue"), (3500, "tab:red")):
         ax.axvline(k["knee"][f], color=col, ls=":", lw=1)
         ax.text(k["knee"][f] * 1.1, 1.5e-3, f"knee\n{k['knee'][f]:,.0f}", color=col, fontsize=8)
     for i, (label, v) in enumerate((densities or {}).items()):
         ax.axvline(v, color="0.3", lw=1.2, ls="--")
         ax.text(v * 1.05, 200 / 3 ** i, label, fontsize=8, color="0.2")
-    for v, label, m in ((my_sites_per_km2, "your tram-ride estimate", "*"), (real_sites_per_km2, "real sites (board)", "D")):
-        if v:
-            ax.axhline(v, color="purple", lw=1, ls="-.")
-            ax.text(0.012, v * 1.15, label, color="purple", fontsize=8)
     ax.set_xlabel(f"subscribers of one operator per km² (busy hour, {k['per_sub_mbps']} Mb/s each)")
     ax.set_ylabel("sites per km²")
     ax.set_ylim(1e-3, 1e3)
-    ax.set_title("Coverage-limited (flat) and capacity-limited (rising)")
+    ax.set_title("Sites needed: flat = coverage-limited, rising = capacity-limited")
     ax.grid(alpha=0.3, which="both")
     ax.legend(fontsize=8, loc="upper left")
     plt.tight_layout()
     plt.show()
     print(f"capacity per 3-sector site: 700 MHz {k['cap_site_mbps'][700]:.0f} Mb/s, 3.5 GHz {k['cap_site_mbps'][3500]:.0f} Mb/s")
-    print(f"knees: 700 MHz {k['knee'][700]:,.0f}, 3.5 GHz {k['knee'][3500]:,.0f}, "
-          f"rural 700 MHz {k['knee']['rural']:,.1f} subscribers per km²")
+    print(f"knees: 700 MHz {k['knee'][700]:,.0f}, 3.5 GHz {k['knee'][3500]:,.0f} subscribers per km²")
     return k
 
 
@@ -386,16 +381,3 @@ def uma_distance_m(pl_db, f_mhz):
 def building_entry_loss(rsrp_outdoor_dbm, rsrp_indoor_dbm):
     """Only meaningful if both readings come from the same cell (same PCI) on the same band."""
     return rsrp_outdoor_dbm - rsrp_indoor_dbm
-
-
-def spacing_from_ride(route_km, serving_cell_changes):
-    """Site spacing and density implied by the serving-cell changes (PCI changes) along a ride.
-
-    Every PCI belongs to one sector. A 3-sector site splits into three cells of radius
-    spacing/3, and a straight route crosses such a cell over about 0.45 x the site spacing
-    on average (mean chord of a hexagon), so the site spacing is about 2.2 km per change.
-    """
-    per_change_km = route_km / max(serving_cell_changes, 1)
-    site_spacing_km = per_change_km / 0.45
-    return dict(km_per_change=per_change_km, site_spacing_km=site_spacing_km,
-                sites_per_km2=1 / (np.sqrt(3) / 2 * site_spacing_km ** 2))

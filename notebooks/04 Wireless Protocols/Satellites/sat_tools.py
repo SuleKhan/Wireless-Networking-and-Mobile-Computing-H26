@@ -311,35 +311,44 @@ def _metrics(el, rng, dop, mask, step_min):
 
 # ----------------------------------------------------------------------------- customers
 CUSTOMERS = [
-    dict(name="Alpine hut, Bernese Oberland", lat=46.55, lon=7.98, terrain_mask=20, subscribers=60, area_km2=1,
+    dict(name="Alpine hut, Bernese Oberland", max_gap_min=5, lat=46.55, lon=7.98, terrain_mask=20, subscribers=60, area_km2=1,
          need="guest Wi-Fi and a webcam, about 50 Mb/s in total; a dish on the roof is fine; gaps under 5 minutes"),
-    dict(name="Research ship near Svalbard", lat=78.5, lon=15.0, terrain_mask=10, subscribers=40, area_km2=50000,
+    dict(name="Research ship near Svalbard", max_gap_min=10, lat=78.5, lon=15.0, terrain_mask=10, subscribers=40, area_km2=50000,
          need="science data and crew internet, 20 Mb/s; a dish on deck; gaps under 10 minutes",
          masts="the ship cruises the open sea; masts on the coast reach only its first few tens of km"),
-    dict(name="Soil sensors, Algerian Sahara", lat=23.0, lon=5.5, terrain_mask=10, subscribers=1000, area_km2=10000,
+    dict(name="Soil sensors, Algerian Sahara", max_gap_min=60, lat=23.0, lon=5.5, terrain_mask=10, subscribers=1000, area_km2=10000,
          need="1,000 battery sensors, 200 bytes each per hour, no dish; gaps of an hour are fine"),
-    dict(name="Rail line, northern Canada", lat=58.7, lon=-94.2, terrain_mask=10, subscribers=50, line_km=1000,
+    dict(name="Rail line, northern Canada", max_gap_min=1, lat=58.7, lon=-94.2, terrain_mask=10, subscribers=50, line_km=1000,
          need="train crews need voice and signalling at all times along 1,000 km; gaps under 1 minute"),
-    dict(name="Sheep ranches, Patagonia", lat=-49.3, lon=-72.9, terrain_mask=15, subscribers=200, area_km2=5000,
+    dict(name="Sheep ranches, Patagonia", max_gap_min=5, lat=-49.3, lon=-72.9, terrain_mask=15, subscribers=200, area_km2=5000,
          need="40 families, 20 Mb/s each at peak; dishes are fine; gaps under 5 minutes"),
-    dict(name="Fishing fleet near Kiribati", lat=1.9, lon=-157.4, terrain_mask=10, subscribers=30, area_km2=100000,
+    dict(name="Fishing fleet near Kiribati", max_gap_min=5, lat=1.9, lon=-157.4, terrain_mask=10, subscribers=30, area_km2=100000,
          need="30 boats, weather and safety messages, 1 Mb/s each; small antennas; gaps under 5 minutes",
          masts="open ocean; masts are possible only on a few small islands"),
-    dict(name="Mountain villages, Nepal Himalaya", lat=28.0, lon=86.9, terrain_mask=35, subscribers=3000, area_km2=600,
-         need="schools and a health post, 20 Mb/s per village; deep valleys hide the sky below 35°"),
-    dict(name="Mining camp, Australian outback", lat=-23.7, lon=133.9, terrain_mask=10, subscribers=200, area_km2=4,
+    dict(name="Mountain villages, Nepal Himalaya", max_gap_min=5, lat=28.0, lon=86.9, terrain_mask=35, subscribers=3000, area_km2=600,
+         need="schools and a health post, 20 Mb/s per village; gaps under 5 minutes; deep valleys hide the sky below 35°"),
+    dict(name="Mining camp, Australian outback", max_gap_min=1, lat=-23.7, lon=133.9, terrain_mask=10, subscribers=200, area_km2=4,
          need="200 workers, video calls, 100 Mb/s in total; gaps under 1 minute"),
-    dict(name="Research station Concordia, Antarctica", lat=-75.1, lon=123.3, terrain_mask=10, subscribers=15, area_km2=1,
+    dict(name="Research station Concordia, Antarctica", max_gap_min=15, lat=-75.1, lon=123.3, terrain_mask=10, subscribers=15, area_km2=1,
          need="science data 10 Mb/s and a voice link for emergencies; gaps under 15 minutes",
          masts="one mast covers the station, but it would need a backhaul link over 1,000 km of ice"),
-    dict(name="Hikers' phones, remote Swiss valleys", lat=46.6, lon=8.9, terrain_mask=30, subscribers=2000, area_km2=500,
-         need="SOS and short messages from ordinary phones, a few kb/s each; no extra hardware"),
-    dict(name="Cargo ships, Northern Sea Route", lat=75.5, lon=120.0, terrain_mask=10, subscribers=50, line_km=5600,
+    dict(name="Hikers' phones, remote Swiss valleys", max_gap_min=15, lat=46.6, lon=8.9, terrain_mask=30, subscribers=2000, area_km2=500,
+         need="SOS and short messages from ordinary phones, a few kb/s each; no extra hardware; gaps under 15 minutes"),
+    dict(name="Cargo ships, Northern Sea Route", max_gap_min=10, lat=75.5, lon=120.0, terrain_mask=10, subscribers=50, line_km=5600,
          need="50 ships, navigation and crew internet, 5 Mb/s each; dishes; gaps under 10 minutes",
          masts="masts would stand on an empty Arctic coast, often far from the ships' route"),
-    dict(name="Village school, Amazon river", lat=-3.1, lon=-60.0, terrain_mask=20, subscribers=300, area_km2=10,
+    dict(name="Village school, Amazon river", max_gap_min=5, lat=-3.1, lon=-60.0, terrain_mask=20, subscribers=300, area_km2=10,
          need="a school of 300 pupils, 30 Mb/s; a dish on the roof; gaps under 5 minutes"),
 ]
+
+
+MIN_AVAILABLE_PCT = 95.0
+
+
+def meets_coverage(customer, r):
+    """Coverage good enough for the customer: available most of the day, and no gap longer than it accepts.
+    Whether the terminal and the data rate fit the need is for you to judge."""
+    return r["available_pct"] >= MIN_AVAILABLE_PCT and r["longest_gap_min"] <= customer["max_gap_min"]
 
 
 def customer_for(matriculation):
@@ -365,6 +374,9 @@ def serve_customer(customer, hours=24.0, step_min=1.0, systems=None):
         res[k] = _metrics(el, rng, dop, mask, step_min)
         res[k].update(mask=mask, satellites=len(s["satrecs"]))
     _print_metrics(customer, res)
+    ok = [k for k, r in res.items() if meets_coverage(customer, r)]
+    print(f"systems that cover your customer (available at least {MIN_AVAILABLE_PCT:.0f} % of the day, no gap over "
+          f"{customer['max_gap_min']} min): {', '.join(ok) or 'none'}")
     names = list(res)
     grid = np.array([res[k]["in_view"] for k in names], float)
     fig, ax = plt.subplots(figsize=(10, 0.45 * len(names) + 1.4))
@@ -419,6 +431,8 @@ def evaluate_shell(customer, shell, min_el=25.0, label="what-if shell", hours=24
     r = _metrics(el, rng, dop, mask, step_min)
     r.update(mask=mask, satellites=len(shell))
     _print_metrics(customer, {label: r})
+    print(f"this shell {'covers' if meets_coverage(customer, r) else 'does not cover'} your customer "
+          f"(available at least {MIN_AVAILABLE_PCT:.0f} % of the day, no gap over {customer['max_gap_min']} min)")
     return r
 
 
@@ -464,7 +478,7 @@ def masts_needed(customer, mast_m=30.0):
     return dict(reach_km=reach, masts=n, note=customer.get("masts", ""))
 
 
-def bridge_figure(customer=None, my_sites_per_km2=None, n_sats=None, gbps_per_sat=80.0):
+def bridge_figure(customer=None, n_sats=None, gbps_per_sat=80.0):
     """Masts against satellites on one picture, with the cellular numbers of Part 1 (Cellular.cellular_tools)."""
     if str(HERE.parent) not in sys.path:
         sys.path.insert(0, str(HERE.parent))
@@ -499,8 +513,6 @@ def bridge_figure(customer=None, my_sites_per_km2=None, n_sats=None, gbps_per_sa
         b.text(lim / 1.15, 2e-3, name, rotation=90, ha="right", va="bottom", fontsize=8, color=col)
     if customer:
         b.axvline(customer["density_per_km2"], color="tab:red", lw=1.5, ls="-.", label="your customer")
-    if my_sites_per_km2:
-        b.axhline(my_sites_per_km2, color="0.3", lw=1, ls="--", label="your tram-ride estimate (Part 1)")
     b.set(xlabel="subscribers per km²", ylabel="mast sites per km²", ylim=(1e-3, 1e3), xlim=(1e-2, 1e5))
     b.set_title("What masts need (Part 1)", fontsize=10)
     b.grid(alpha=0.3, which="both")
