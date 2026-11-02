@@ -1,0 +1,22 @@
+Declaration of AI Use
+
+I used generative AI as a supporting tool while preparing this assignment. I used it to help explain Wi-Fi concepts, check scenario parameters, interpret simulation plots, and improve the clarity of some responses. I reviewed the suggestions and adapted them to my work.
+
+Step 1: Multiple Transmitting Stations
+- 1.1: Used AI to help count the stations and transmitters in the scenario, then verified the result.
+- 1.2: No AI used; completed independently.
+- 1.3–1.4: Used AI to help answer and explain the questions, then reviewed the responses to understand the concepts.
+
+Step 2: Modified MAC Parameters
+- 2.1–2.4: Used AI to check the scenario settings and explain how AIFSN and CWMin affect channel access.
+- 2.5–2.6: Used AI to help interpret the throughput and delay plots for the AIFSN and CWMin scenarios.
+- 2.7–2.8: No AI used; completed independently.
+- 2.9: Used AI to help compare the station-specific performance and explain the fairness effects.
+
+Step 3: Modified PHY Parameters
+- 3.1: Used AI to compare the PHY scenario with the initial scenario and identify the changed settings.
+- 3.2: Used AI to help interpret and describe the station throughput and delay plots.
+- 3.3: Used AI to explain the expected effects of changing transmission power.
+- 3.4: Used AI to discuss how Station 10's AIFSN, CWMin, PHY mode, and transmission power could affect delivery of its offered traffic.
+
+I reviewed the AI-assisted material and am responsible for the content, accuracy, and final wording of my submitted work.
