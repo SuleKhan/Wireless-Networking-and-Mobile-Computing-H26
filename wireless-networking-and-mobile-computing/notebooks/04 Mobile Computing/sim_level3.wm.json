@@ -1,0 +1,13 @@
+{
+ "tool": "audio_watermark",
+ "version": 1,
+ "level": 3,
+ "generators": 12,
+ "frames_per_bit": 1,
+ "strength": 15.0,
+ "payload_bits": 336,
+ "chars": 42,
+ "message": "zFLOLy2kCFUbneQKruCHcY3gabpkKuv8xRUoor2S7A",
+ "source": "CrabRave.wav",
+ "created": "2026-11-12T13:27:16"
+}

@@ -1,0 +1,10 @@
+distance_cm,level,level_name,chars,ber,bit_errors,bits,char_accuracy,detected,confidence,note
+10,2,robust,20,0.0,0,160,1.0,True,1.147,
+50,2,robust,20,0.4875,78,160,0.0,True,0.207,
+100,2,robust,20,0.58125,93,160,0.0,True,0.155,
+10,4,fast,51,0.0,0,408,1.0,True,1.342,
+50,4,fast,51,0.473039,193,408,0.0,True,0.143,
+100,4,fast,51,0.546569,223,408,0.019608,True,0.138,
+10,2m,robust,20,0.0,0,160,1.0,True,1.025,
+50,2m,robust,20,0.46875,75,160,0.05,True,0.195,
+100,2m,robust,20,0.5375,86,160,0.0,True,0.186,

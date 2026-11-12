@@ -1,0 +1,1 @@
+I used GitHub Copilot to help draft explanations, interpret results, and implement the modem detector. I reviewed and adapted its suggestions to match my measurements, plots, and notebook outputs, and ran the provided self-tests to check the code. I also reviewed the explanations to understand the reasoning behind them.

@@ -1,0 +1,13 @@
+{
+ "tool": "audio_watermark",
+ "version": 1,
+ "level": 4,
+ "generators": 10,
+ "frames_per_bit": 1,
+ "strength": 15.0,
+ "payload_bits": 408,
+ "chars": 51,
+ "message": "21715917 hello world :). Don't push the red button!",
+ "source": "CrabRave.wav",
+ "created": "2026-11-12T13:53:15"
+}
