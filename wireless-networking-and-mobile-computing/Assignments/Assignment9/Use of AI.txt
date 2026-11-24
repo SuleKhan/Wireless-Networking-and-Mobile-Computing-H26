@@ -1,0 +1,2 @@
+Github CoPilot was used to answer all questions when possible and then I went over answers to verify and understand them.
+
