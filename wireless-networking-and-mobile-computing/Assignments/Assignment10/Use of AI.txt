@@ -1,0 +1,4 @@
+CoPilot was used to answer Step 1.
+ChatGPT with opencode harness was used to answer Steps 2 and 3.
+
+We then went over the answers to verify and understand them.
